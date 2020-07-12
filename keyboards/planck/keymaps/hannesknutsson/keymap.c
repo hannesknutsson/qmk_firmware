@@ -37,18 +37,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	//Base layer containing letters, modifiers and basic punctuation.
 	[_BASE] = LAYOUT_planck_grid(
-	    KC_TAB ,  SE_Q 	 , SE_W   , SE_E   , SE_R , SE_T  , SE_Y  , SE_U , SE_I   , SE_O   , SE_P 	, SE_ARNG	,
-	    KC_LCTL,  SE_A 	 , SE_S   , SE_D   , SE_F , SE_G  , SE_H  , SE_J , SE_K   , SE_L   , SE_ODIA, SE_ADIA	,
-	    KC_LSFT,  SE_Z	 , SE_X   , SE_C   , SE_V , SE_B  , SE_N  , SE_M , SE_COMM, SE_DOT , SE_MINS, MT_RSH_ENT,
+	    KC_TAB ,  SE_Q   , SE_W   , SE_E   , SE_R , SE_T  , SE_Y  , SE_U , SE_I   , SE_O   , SE_P 	, SE_ARNG   ,
+	    KC_LCTL,  SE_A   , SE_S   , SE_D   , SE_F , SE_G  , SE_H  , SE_J , SE_K   , SE_L   , SE_ODIA, SE_ADIA   ,
+	    KC_LSFT,  SE_Z   , SE_X   , SE_C   , SE_V , SE_B  , SE_N  , SE_M , SE_COMM, SE_DOT , SE_MINS, MT_RSH_ENT,
 	    KC_ESC ,  KC_LGUI, KC_LALT, XXXXXXX, LOWER, KC_SPC, KC_SPC, RAISE, KC_ALGR, XXXXXXX, XXXXXXX, DEF_GAME
 	),
 
 	//Game layer. Shifts top three rows down one row to allow for a persistent number row.
 	[_GAME] = LAYOUT_planck_grid(
-	    KC_ESC ,  SE_1	 , SE_2	  , SE_3   , SE_4 , SE_5  , SE_6  , SE_7   , SE_8   , SE_9   , SE_0   , SE_ARNG	  ,
-	    KC_TAB ,  SE_Q 	 , SE_W   , SE_E   , SE_R , SE_T  , SE_Y  , SE_U   , SE_I   , SE_O   , SE_P   , SE_ADIA	  ,
-	    KC_LSFT,  SE_A 	 , SE_S   , SE_D   , SE_F , SE_G  , SE_H  , SE_J   , SE_K   , SE_L   , SE_ODIA, MT_RSH_ENT,
-	    KC_LCTL,  SE_Z	 , SE_X   , SE_C   , SE_V , KC_SPC, KC_SPC, SE_M   , SE_COMM, SE_DOT , SE_MINS, DEF_BASE
+	    KC_ESC ,  SE_1, SE_2, SE_3, SE_4, SE_5  , SE_6  , SE_7, SE_8   , SE_9  , SE_0   , SE_ARNG   ,
+	    KC_TAB ,  SE_Q, SE_W, SE_E, SE_R, SE_T  , SE_Y  , SE_U, SE_I   , SE_O  , SE_P   , SE_ADIA   ,
+	    KC_LSFT,  SE_A, SE_S, SE_D, SE_F, SE_G  , SE_H  , SE_J, SE_K   , SE_L  , SE_ODIA, MT_RSH_ENT,
+	    KC_LCTL,  SE_Z, SE_X, SE_C, SE_V, KC_SPC, KC_SPC, SE_M, SE_COMM, SE_DOT, SE_MINS, DEF_BASE
 	),
 
 	//Raise layer containing special characters and arrow keys.
@@ -61,9 +61,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	//Lower layer containing numbers, F-keys, backspace and delete.
 	[_LOWER] = LAYOUT_planck_grid(
-	    _______, SE_1	, SE_2	 , SE_3	  , SE_4   , SE_5   , SE_6   , SE_7  , SE_8   , SE_9   , SE_0   , KC_DEL ,
-	    _______, KC_F1 	, KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , SE_4  , SE_5   , SE_6   , SE_CIRC, KC_BSPC,
-	    _______, KC_F7 	, KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , SE_1  , SE_2   , SE_3   , SE_QUOT, _______,
+	    _______, SE_1   , SE_2   , SE_3   , SE_4   , SE_5   , SE_6   , SE_7  , SE_8   , SE_9   , SE_0   , KC_DEL ,
+	    _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , SE_4  , SE_5   , SE_6   , SE_CIRC, KC_BSPC,
+	    _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , SE_1  , SE_2   , SE_3   , SE_QUOT, _______,
 	    _______, _______, _______, _______, _______, _______, _______, SE_DOT, _______, _______, _______, _______
 	)
 
