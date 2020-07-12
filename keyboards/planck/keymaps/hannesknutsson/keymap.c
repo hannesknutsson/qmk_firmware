@@ -54,8 +54,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//Raise layer containing special characters and arrow keys.
 	[_RAISE] = LAYOUT_planck_grid(
 	    _______, _______, _______, SE_LPRN, SE_RPRN, _______, _______, _______, _______, _______ , _______, KC_DEL ,
-	    _______, _______, _______, SE_LCBR, SE_RCBR, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, SE_TILD, KC_BSPC,
-	    _______, _______, _______, SE_LBRC, SE_RBRC, _______, _______, _______, _______, _______ , SE_ASTR, _______,
+	    _______, SE_PIPE, _______, SE_LCBR, SE_RCBR, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, SE_TILD, KC_BSPC,
+	    _______, SE_LABK, SE_RABK, SE_LBRC, SE_RBRC, _______, _______, _______, _______, _______ , SE_ASTR, _______,
 	    _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______ , _______, _______
 	),
 
