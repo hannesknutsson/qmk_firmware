@@ -31,7 +31,7 @@ enum planck_layers {
 #define DEF_GAME  	TO(_GAME)		//Change default layer to game layer
 #define DEF_BASE  	TO(_BASE)		//Change define layer to base layer
 
-#define MT_RSH_ENT 	MT(MOD_RSFT, KC_ENTER)
+#define MT_RSH_ENT 	MT(MOD_RSFT, KC_ENTER)	//Right shift acts like enter when tapped
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	//Combined layer. Activates when both lower and raise activates at the same time.
 	[_LOWER] = LAYOUT_planck_grid(
-	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
+	    RESET  , _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
 	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
 	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
 	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______
@@ -78,6 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+//Tells QMK what to do when bothe lower and raise is active at the same time (activates _BOTH).
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _BOTH);
 }
