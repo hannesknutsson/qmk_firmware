@@ -61,10 +61,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	//Lower layer containing numbers, F-keys, backspace and delete.
 	[_LOWER] = LAYOUT_planck_grid(
-	    _______, SE_1   , SE_2   , SE_3   , SE_4   , SE_5   , SE_6   , SE_7  , SE_8   , SE_9   , SE_0   , SE_PLUS,
-	    _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , SE_4  , SE_5   , SE_6   , SE_DIAE, SE_ACUT,
-	    _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , SE_1  , SE_2   , SE_3   , SE_QUOT, _______,
-	    _______, _______, _______, _______, _______, _______, _______, SE_DOT, _______, _______, _______, _______
+	    _______, SE_1   , SE_2   , SE_3   , SE_4   , SE_5   , SE_6   , SE_7   , SE_8  , SE_9   , SE_0   , SE_PLUS,
+	    _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , SE_4   , SE_5  , SE_6   , SE_DIAE, SE_ACUT,
+	    _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , SE_1   , SE_2  , SE_3   , SE_QUOT, _______,
+	    _______, _______, _______, _______, _______, _______, _______, _______, SE_DOT, _______, _______, _______
 	),
 
 	//Combined layer. Activates when both lower and raise activates at the same time.
