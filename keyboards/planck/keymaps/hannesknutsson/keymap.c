@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	    _______, _______, _______, SE_LPRN, SE_RPRN, _______, _______, _______, _______, _______ , _______, KC_DEL ,
 	    _______, SE_PIPE, _______, SE_LCBR, SE_RCBR, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, _______, KC_BSPC,
 	    _______, SE_LABK, SE_RABK, SE_LBRC, SE_RBRC, _______, _______, _______, _______, _______ , _______, _______,
-	    _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, _______ , _______, _______
+	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______
 	),
 
 	//Lower layer containing numbers, F-keys, backspace and delete.
@@ -69,16 +69,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	//Combined layer. Activates when both lower and raise activates at the same time.
 	[_LOWER] = LAYOUT_planck_grid(
-	    RESET  , _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
-	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
-	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______,
-	    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______
+	    RESET  , _______, _______, _______, KC_VOLD, KC_MUTE, _______, KC_VOLU, _______, _______ , _______, KC_CLR ,
+	    _______, _______, _______, _______, KC_MPRV, KC_MSEL, KC_MPLY, KC_MNXT, _______, _______ , _______, _______,
+	    _______, _______, _______, _______, KC_BRIU, KC_APP , KC_PSCR, KC_BRIU, _______, _______ , _______, _______,
+	    MU_TOG , CK_TOGG, _______, _______, _______, _______, _______, _______, _______, _______ , _______, _______
 	)
-
-
 };
 
-//Tells QMK what to do when bothe lower and raise is active at the same time (activates _BOTH).
+//Tells QMK what to do when both lower and raise is active at the same time (activates _BOTH).
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _BOTH);
+}
+
+//Defines what keycodes should be ignored (not sent to computer) when in music mode.
+//Returning false here lets the presses through even in music mode.
+bool music_mask_user(uint16_t keycode) {
+  switch (keycode) {
+    case LOWER:
+    case RAISE:
+    case MU_TOG:
+      return false;
+    default:
+      return true;
+  }
 }
