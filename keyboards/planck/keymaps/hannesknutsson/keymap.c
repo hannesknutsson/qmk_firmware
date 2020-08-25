@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
 	//Combined layer. Activates when both lower and raise activates at the same time.
-	[_LOWER] = LAYOUT_planck_grid(
+	[_BOTH] = LAYOUT_planck_grid(
 	    RESET  , _______, _______, _______, KC_VOLD, KC_MUTE, _______, KC_VOLU, _______, _______ , _______, KC_CLR ,
 	    _______, _______, _______, _______, KC_MPRV, KC_MSEL, KC_MPLY, KC_MNXT, _______, _______ , _______, _______,
 	    _______, _______, _______, _______, KC_BRIU, KC_APP , KC_PSCR, KC_BRIU, _______, _______ , _______, _______,
