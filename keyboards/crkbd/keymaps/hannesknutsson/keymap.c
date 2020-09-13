@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "keymap_swedish.h"
 
 
 #ifdef RGBLIGHT_ENABLE

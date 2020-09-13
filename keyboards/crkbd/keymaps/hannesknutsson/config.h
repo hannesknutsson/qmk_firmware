@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-//#define USE_MATRIX_I2C
+//#define USE_MATRIX_I2C		//Something you use for single color LEDs if I understood docs correctly
 
 /* Select hand configuration */
 
@@ -32,8 +32,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define TAPPING_FORCE_HOLD		//When holding a key after tapping it, repeat the tap instead of holding the mod tap mod key
+#define TAPPING_TERM 200		//How long a tap is
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
