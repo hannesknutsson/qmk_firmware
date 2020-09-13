@@ -44,9 +44,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_MINS, RSH_ENT,\
+      KC_LGUI,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_MINS, RSH_ENT,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_LALT, SPC_LOW,    ENT_RSE, KC_RALT, XXXXXXX\
+                                          KC_LALT, KC_LSFT, SPC_LOW,    ENT_RSE, KC_RALT, XXXXXXX\
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,\
+      _______, SE_EXLM, SE_DQUO, SE_HASH, SE_CURR, SE_PERC,                      SE_AMPR, SE_SLSH, SE_LPRN, SE_RPRN,  SE_EQL, SE_QUES,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LCBR, KC_RCBR, KC_PIPE,  KC_GRV,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -88,12 +88,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+//////////////		Variables n shit	//////////////////////////////////////////////////////////////////////////////////////
+
 int RGB_current_mode;
 
-void persistent_default_layer_set(uint16_t default_layer) {
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
+//////////////		WHAT IS THIS 		//////////////////////////////////////////////////////////////////////////////////////
+
+//void persistent_default_layer_set(uint16_t default_layer) {
+//  eeconfig_update_default_layer(default_layer);
+//  default_layer_set(default_layer);
+//}
+
+//////////////		RGB ???			//////////////////////////////////////////////////////////////////////////////////////
 
 // Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
@@ -103,6 +109,14 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
     layer_off(layer3);
   }
 }
+
+//////////////		ALLOW ADJUST LAYER	//////////////////////////////////////////////////////////////////////////////////////
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+//////////////		OLED STUFF		//////////////////////////////////////////////////////////////////////////////////////
 
 void matrix_init_user(void) {
     #ifdef RGBLIGHT_ENABLE
@@ -162,18 +176,20 @@ void iota_gfx_task_user(void) {
 }
 #endif//SSD1306OLED
 
+//////////////// 	EVERY PRESS METHOD ????		///////////////////////////////////////////////////////////////////////
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
 #ifdef SSD1306OLED
     set_keylog(keycode, record);
 #endif
-    // set_timelog();
+    // set_timelog();		//This was commented out by default. What does it do? Is it cool?
   }
 
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        persistent_default_layer_set(1UL<<_QWERTY);
+        //This feels useless.. --> persistent_default_layer_set(1UL<<_QWERTY);
       }
       return false;
     case LOWER:
