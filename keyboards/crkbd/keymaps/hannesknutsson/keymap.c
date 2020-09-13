@@ -16,20 +16,22 @@ extern uint8_t is_master;
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-#define _ADJUST 3
+#define _GAME 3
+#define _ADJUST 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
   ADJUST,
-  BACKLIT,
+  GAME,
   RGBRST
 };
 
 #define SPC_LOW		LT(_LOWER, KC_SPC)	//Hold to activate lower layer, tap to send a space
 #define ENT_RSE		LT(_RAISE, KC_BSPC)	//Hold to activate raise layer, tap to send a backspace
 #define RSH_ENT		RSFT_T(KC_ENT)		//Hold to activate right shift, tap to send enter
+#define GAMETOG		TG(_GAME)		//Toggle the game layer
 
 
 //Commented this out cuz I don't think I'll be using it, but ya' never know.
@@ -75,13 +77,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
+  [_GAME] = LAYOUT( \
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC,    SE_1,    SE_2,    SE_3,    SE_4,    SE_5,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, KC_LSFT,  KC_SPC,    GAMETOG, GAMETOG, GAMETOG \
+                                      //`--------------------------'  `--------------------------'
+  ),
+
   [_ADJUST] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         RESET,  RGBRST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
+      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GAMETOG,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
