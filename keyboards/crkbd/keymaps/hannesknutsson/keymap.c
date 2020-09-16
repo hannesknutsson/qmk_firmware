@@ -25,30 +25,26 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   GAME,
-  RGBRST
+  RGBRST,
+  WS_UP,
+  WS_DWN
 };
 
 #define SPC_LOW		LT(_LOWER, KC_SPC)	//Hold to activate lower layer, tap to send a space
-#define ENT_RSE		LT(_RAISE, KC_BSPC)	//Hold to activate raise layer, tap to send a backspace
-#define RSH_ENT		RSFT_T(KC_ENT)		//Hold to activate right shift, tap to send enter
+#define BSP_RSE		LT(_RAISE, KC_BSPC)	//Hold to activate raise layer, tap to send a backspace
+#define AGR_ENT		RALT_T(KC_ENT)		//Hold to activate alt gr, tap to send enter
 #define GAMETOG		TG(_GAME)		//Toggle the game layer
-
-
-//Commented this out cuz I don't think I'll be using it, but ya' never know.
-//enum macro_keycodes {
-//  KC_SAMPLEMACRO,
-//};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_P,  SE_ARNG,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,\
+      KC_LSFT,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LGUI,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, XXXXXXX, XXXXXXX,\
+      KC_LCTL,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_QUOT, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT, KC_LSFT, SPC_LOW,    ENT_RSE,  KC_ENT, KC_RALT \
+                                          KC_LGUI, KC_LALT, SPC_LOW,    BSP_RSE, AGR_ENT,  KC_DEL \
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -57,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    SE_1,    SE_2,    SE_3,    SE_4,    SE_5,                         SE_6,    SE_7,    SE_8,    SE_9,    SE_0, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,\
+      _______, XXXXXXX, XXXXXXX, XXXXXXX,   WS_UP, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                       KC_F11,  KC_F12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
+      _______, XXXXXXX, XXXXXXX, XXXXXXX,  WS_DWN, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
@@ -67,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, SE_EXLM, SE_DQUO, SE_HASH, SE_CURR, SE_PERC,                      SE_AMPR, SE_SLSH, SE_LPRN, SE_RPRN,  SE_EQL, SE_QUES,\
+      SE_TILD, SE_EXLM, SE_DQUO, SE_HASH, SE_CURR, SE_PERC,                      SE_AMPR, SE_SLSH, SE_LPRN, SE_RPRN,  SE_EQL, SE_QUES,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      SE_MINS,  SE_EQL, SE_LCBR, SE_RCBR, SE_GRV,  SE_CIRC,\
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       SE_EQL, SE_MINS, SE_LCBR, SE_RCBR, SE_GRV,  SE_CIRC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, SE_PIPE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      SE_UNDS, SE_PLUS, SE_LBRC, SE_RBRC, SE_BSLS, SE_ASTR,\
+        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                      SE_PLUS, SE_UNDS, SE_LBRC, SE_RBRC, SE_BSLS, SE_ASTR,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
@@ -81,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    SE_1,    SE_2,    SE_3,    SE_4,    SE_5,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
+       KC_TAB,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -249,6 +245,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
+    case WS_UP:
+      if (record->event.pressed) {
+        register_code(KC_LCTL);
+        register_code(KC_LALT);
+        register_code(KC_UP);
+        unregister_code(KC_UP);
+        unregister_code(KC_LCTL);
+        unregister_code(KC_LALT);
+      }
+      return false;
+    case WS_DWN:
+      if (record->event.pressed) {
+        register_code(KC_LCTL);
+        register_code(KC_LALT);
+        register_code(KC_DOWN);
+        unregister_code(KC_DOWN);
+        unregister_code(KC_LCTL);
+        unregister_code(KC_LALT);
+      }
+      return false;
   }
   return true;
 }
