@@ -17,7 +17,8 @@ extern uint8_t is_master;
 #define _LOWER 1
 #define _RAISE 2
 #define _GAME 3
-#define _ADJUST 4
+#define _NUMPAD 4
+#define _ADJUST 5
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -25,15 +26,19 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   GAME,
+  NUMPAD,
   RGBRST,
   WS_UP,
-  WS_DWN
+  WS_DWN,
+  IDE_FRW,
+  IDE_BCK
 };
 
 #define SPC_LOW		LT(_LOWER, KC_SPC)	//Hold to activate lower layer, tap to send a space
 #define BSP_RSE		LT(_RAISE, KC_BSPC)	//Hold to activate raise layer, tap to send a backspace
 #define AGR_ENT		RALT_T(KC_ENT)		//Hold to activate alt gr, tap to send enter
 #define GAMETOG		TG(_GAME)		//Toggle the game layer
+#define NUM_TOG		TG(_NUMPAD)		//Toggle the numpad on/off
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
@@ -42,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_QUOT, XXXXXXX,\
+      KC_LCTL,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_QUOT, NUM_TOG,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, KC_LALT, SPC_LOW,    BSP_RSE, AGR_ENT,  KC_DEL \
                                       //`--------------------------'  `--------------------------'
@@ -53,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    SE_1,    SE_2,    SE_3,    SE_4,    SE_5,                         SE_6,    SE_7,    SE_8,    SE_9,    SE_0, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX,   WS_UP, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,\
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, IDE_FRW,   WS_UP,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX,  WS_DWN, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, IDE_BCK,  WS_DWN,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
@@ -65,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       SE_TILD, SE_EXLM, SE_DQUO, SE_HASH, SE_CURR, SE_PERC,                      SE_AMPR, SE_SLSH, SE_LPRN, SE_RPRN,  SE_EQL, SE_QUES,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       SE_EQL, SE_MINS, SE_LCBR, SE_RCBR, SE_GRV,  SE_CIRC,\
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                      SE_PIPE, SE_MINS, SE_LCBR, SE_RCBR, SE_GRV,  SE_CIRC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                      SE_PLUS, SE_UNDS, SE_LBRC, SE_RBRC, SE_BSLS, SE_ASTR,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -82,6 +87,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTL,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                      GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG, GAMETOG,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, KC_LSFT,  KC_SPC,    GAMETOG, GAMETOG, GAMETOG \
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_NUMPAD] = LAYOUT( \
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      _______, _______, _______, _______, _______, _______,                      XXXXXXX,    SE_7,    SE_8,    SE_9, XXXXXXX, XXXXXXX,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, _______, _______, _______, _______, _______,                      XXXXXXX,    SE_4,    SE_5,    SE_6, XXXXXXX, XXXXXXX,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, _______, _______, _______, _______, _______,                      XXXXXXX,    SE_1,    SE_2,    SE_3, XXXXXXX, NUM_TOG,\
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          _______, _______, _______,    _______,  SE_DOT,    SE_0 \
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -247,21 +264,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case WS_UP:
       if (record->event.pressed) {
+	//GNOME move one workspace up
         register_code(KC_LCTL);
         register_code(KC_LALT);
-        register_code(KC_UP);
-        unregister_code(KC_UP);
+        tap_code(KC_UP);
         unregister_code(KC_LCTL);
         unregister_code(KC_LALT);
       }
       return false;
     case WS_DWN:
       if (record->event.pressed) {
+	//GNOME move one workspace down
         register_code(KC_LCTL);
         register_code(KC_LALT);
-        register_code(KC_DOWN);
-        unregister_code(KC_DOWN);
+        tap_code(KC_DOWN);
         unregister_code(KC_LCTL);
+        unregister_code(KC_LALT);
+      }
+      return false;
+    case IDE_FRW:
+      //IntelliJ Idea shortcut
+      if (record->event.pressed) {
+        register_code(KC_LSFT);
+        register_code(KC_LALT);
+        tap_code(KC_RIGHT);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_LALT);
+      }
+      return false;
+
+    case IDE_BCK:
+      //IntelliJ Idea shortcut
+      if (record->event.pressed) {
+        register_code(KC_LSFT);
+        register_code(KC_LALT);
+        tap_code(KC_LEFT);
+        unregister_code(KC_LSFT);
         unregister_code(KC_LALT);
       }
       return false;

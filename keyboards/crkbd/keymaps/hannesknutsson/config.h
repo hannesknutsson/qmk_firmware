@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 //#define TAPPING_FORCE_HOLD		//When holding a key after tapping it, hold the mod tap instead of repeating the key
-#define TAPPING_TERM 200		//How long a tap is
+#define TAPPING_TERM 175		//How long a tap is
 
 //#define RGBLIGHT_ENABLE
 

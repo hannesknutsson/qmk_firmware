@@ -8,8 +8,9 @@
 #define L_LOWER 2
 #define L_RAISE 4
 #define L_GAME 8
-#define L_ADJUST 22
-#define L_ADJUST_TRI 30
+#define L_NUMPAD 16
+#define L_ADJUST 38
+#define L_ADJUST_TRI 46
 
 char layer_state_str[24];
 
@@ -27,6 +28,9 @@ const char *read_layer_state(void) {
     break;
   case L_GAME:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Game");
+    break;
+  case L_NUMPAD:
+    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Numpad");
     break;
   case L_ADJUST:
   case L_ADJUST_TRI:
